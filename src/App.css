@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "Humanbumsuk";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Humanbumsuk";
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width: 650px) {
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.App {
+  min-height: 100vh;
+  padding: 0px 20px 0px 20px;
+}
+
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  font-size: 18px;
+
+  /* 버튼 내 글자가 짤려서 두 줄이 되지 않게 함 */
+  white-space: nowrap;
+  font-family: "Humanbumsuk";
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: black;
+}
+.MyButton_positive {
+  background-color: #4736fa80;
+  color: white;
+}
+
+.MyButton_negative {
+  background-color: #fc8e8e;
+  color: black;
+}
+
+header {
+  padding: 20px 0 20px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 45px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
+}
+
+header button {
+  font-family: "Humanbumsuk";
+}
