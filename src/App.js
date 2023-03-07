@@ -43,8 +43,47 @@ export const DiaryStateContext = React.createContext();
 //dispatch 함수들도 context로 공급
 export const DiaryDispatchContext = React.createContext();
 
+//더미데이터로 일기 자료 임시 저장
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘의 일기1",
+    date: 1678172343286,
+    // date의 값은 밀리세컨 값으로 넣어야 해서 newDate().getTime() 을 콘솔에ㅈ 찍어서 확인한다.
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: "오늘의 일기2",
+    date: 1678172343287,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: "오늘의 일기3",
+    date: 1678172343288,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: "오늘의 일기4",
+    date: 1678172343289,
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: "오늘의 일기5",
+    date: 1678172343290,
+  },
+];
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+  // const [data, dispatch] = useReducer(reducer, []);
+  // 더미데이터를 기초값으로 넣기
+  const [data, dispatch] = useReducer(reducer, dummyData);
+
+  // console.log(new Date().getTime());
 
   const dataId = useRef(0);
 
