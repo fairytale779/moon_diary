@@ -93,3 +93,31 @@ header .head_btn_right {
 header button {
   font-family: "Humanbumsuk";
 }
+
+.DiaryList .menu_wrap {
+  margin: 20px 0 30px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryList .menu_wrap .right_col {
+  flex-grow: 1;
+  /* display: flex 부모 아래의 남은 부분을 전부 차지하게 됨; */
+}
+
+.DiaryList .menu_wrap .right_col button {
+  width: 100%;
+}
+
+.DiaryList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  height: 40px;
+  padding: 10px 10px 10px 20px;
+
+  cursor: pointer;
+  font-family: "Humanbumsuk";
+  font-size: 18px;
+}
