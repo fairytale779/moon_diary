@@ -121,3 +121,41 @@ header button {
   font-family: "Humanbumsuk";
   font-size: 18px;
 }
+
+.DiaryItem {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #e2e2e2;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryItem .emotion_img {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.DiaryItem .info_wrap {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.DiaryItem .diary_date {
+  font-weight: 1000;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.DiaryItem .diary_content_prev {
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.DiaryItem .btn_wrap {
+  min-width: 70px;
+}
