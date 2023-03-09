@@ -259,3 +259,56 @@ header button {
   background-color: #ff5b5b;
   color: white;
 }
+
+.DiaryPage section {
+  width: 100%;
+  /* 아이템들을 중앙으로 맞춰주기 위해서 100% 설정한다고 생각~ */
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.DiaryPage h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.DiaryPage .diary_img_wrap {
+  background-image: url("./../public/assets/back.png");
+  background-size: 600px 300px;
+  width: 600px;
+  height: 300px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.DiaryPage .diary_img_wrap_1 img {
+  width: 60px;
+  margin: 0 0 150px 0;
+}
+
+.DiaryPage .diary_img_wrap_2 img {
+  width: 60px;
+  margin: 40px 100px 150px 0;
+}
+
+.DiaryPage .diary_img_wrap_3 img {
+  width: 60px;
+  margin: 60px 170px 130px 0;
+}
+
+.DiaryPage .diary_img_wrap_4 img {
+  width: 60px;
+  margin: 80px 230px 110px 0;
+}
+
+.DiaryPage .diary_img_wrap_5 img {
+  width: 60px;
+  margin: 170px 350px 40px 0;
+}
