@@ -1,8 +1,9 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
 import EmotionItem from "./EmotionItem";
 import MyButton from "./MyButton";
+import MyHeader from "./MyHeader";
 
 const emotionList = [
   {
@@ -36,20 +37,20 @@ const getStringDate = (date) => {
   return date.toISOString().slice(0, 10);
 };
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ isEdit, originData }) => {
   const navigate = useNavigate();
   //비어있을 시 자동으로 포커스하는 기능을 위한
-  const contentRef = useRef(0);
+  const contentRef = useRef();
   const [content, setContent] = useState("");
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState(getStringDate(new Date()));
 
   // DiaryDispatchContext로부터 onCreate 함수를 받아옴
-  const { onCreate } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
 
   const handleSubmit = () => {
     // 내용이 하나도 없을 경우 다시 textarea로 focus
@@ -57,13 +58,54 @@ const DiaryEditor = () => {
       contentRef.current.focus();
       return;
     }
-    onCreate(date, content, emotion);
+
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 작성하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(date, content, emotion);
+      } else {
+        onEdit(originData.id, date, content, emotion);
+      }
+    }
     navigate("/", { replace: true });
     // 일기 작성하는 페이지를 뒤로가기로 못 오게 만드는 작업
   };
 
+  const handleRemove = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onRemove(originData.id);
+      navigate("/", { replace: true });
+    }
+  };
+
+  useEffect(() => {
+    if (isEdit) {
+      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setEmotion(originData.emotion);
+      setContent(originData.content);
+    }
+  }, [isEdit, originData]);
+
   return (
     <div className="DiaryEditor">
+      <MyHeader
+        headtext={isEdit ? "일기 수정하기" : "새 일기쓰기"}
+        leftchild={
+          <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
+        }
+        rightchild={
+          isEdit && (
+            <MyButton
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleRemove}
+            />
+          )
+        }
+      />
       <div>
         <section>
           <h4>오늘은 언제인가요?</h4>

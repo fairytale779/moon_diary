@@ -13,11 +13,11 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   //     content.length >= 25 ? `{content.slice(0, 25)} ...` : { content };
 
   const goDetail = () => {
-    navigate("/diary/${id}");
+    navigate(`/diary/${id}`);
   };
 
   const goEdit = () => {
-    navigate("/edit/${id}");
+    navigate(`/edit/${id}`);
   };
 
   return (
