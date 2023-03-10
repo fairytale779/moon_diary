@@ -36,11 +36,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
     ) {
       if (!isEdit) {
         onCreate(date, content, emotion);
+        navigate("/", { replace: true });
       } else {
         onEdit(originData.id, date, content, emotion);
+        navigate(`/diary/${originData.id}`, { replace: true });
       }
     }
-    navigate("/", { replace: true });
+
     // 일기 작성하는 페이지를 뒤로가기로 못 오게 만드는 작업
   };
 

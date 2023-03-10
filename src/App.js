@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 /* eslint-disable jsx-a11y/alt-text */
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -35,6 +35,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
@@ -44,46 +45,22 @@ export const DiaryStateContext = React.createContext();
 //dispatch 함수들도 context로 공급
 export const DiaryDispatchContext = React.createContext();
 
-//더미데이터로 일기 자료 임시 저장
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "오늘의 일기1",
-    date: 1678172343286,
-    // date의 값은 밀리세컨 값으로 넣어야 해서 newDate().getTime() 을 콘솔에ㅈ 찍어서 확인한다.
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: "오늘의 일기2",
-    date: 1678172343287,
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: "오늘의 일기3",
-    date: 1678172343288,
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: "오늘의 일기4",
-    date: 1678172343289,
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content:
-      "오늘의 일기5라고 적었지만 사실 나는 엄청나게 긴 일기내용을 가지고 있지 왜냐하면 실험을 위해서야 ",
-    date: 1678172343290,
-  },
-];
-
 function App() {
   // const [data, dispatch] = useReducer(reducer, []);
-  // 더미데이터를 기초값으로 넣기
-  const [data, dispatch] = useReducer(reducer, dummyData);
+  const [data, dispatch] = useReducer(reducer, []);
+
+  useEffect(() => {
+    const localData = localStorage.getItem("diary");
+    if (localData) {
+      const diaryList = JSON.parse(localData).sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      );
+      dataId.current = parseInt(diaryList[0].id) + 1;
+      // 갖고온 일기 데이터중 가장높은 id+1 을 해주기
+      // 데이터를 내림차순으로 정렬 -> 첫번째 인덱스가 가장 높은 id
+      dispatch({ type: "INIT", data: diaryList });
+    }
+  }, []);
 
   // console.log(new Date().getTime());
 

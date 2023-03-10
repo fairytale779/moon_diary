@@ -276,6 +276,14 @@ header button {
   font-weight: bold;
 }
 
+.DiaryPage .emotion_descript {
+  font-size: 20px;
+  color: #c4c4c4;
+  font-weight: bold;
+  position: absolute;
+  top: 400px;
+}
+
 .DiaryPage .diary_img_wrap {
   background-image: url("./../public/assets/back.png");
   background-size: 600px 300px;
@@ -311,4 +319,22 @@ header button {
 .DiaryPage .diary_img_wrap_5 img {
   width: 60px;
   margin: 170px 350px 40px 0;
+}
+
+.DiaryPage .diary_content_wrap {
+  width: 100%;
+  background-color: #ececec;
+  border-radius: 5px;
+  word-break: keep-all;
+  /* 텍스트가 길어져서 줄을 바꿔야하는 상황이 왔을 때 단어를 쪼개지 않는 속성 */
+  overflow-wrap: break-word;
+  /* 이 wrap이 너무 길어서 넘어갈 경우 줄 바꿈을 해줌 */
+}
+
+.DiaryPage .diary_content_wrap p {
+  padding: 20px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
 }
